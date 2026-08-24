@@ -17,15 +17,22 @@ if "seguir_sub" not in st.session_state:
     st.session_state.seguir_sub = None
 
 # ════════════════════════════════════════════════════════════════════════════
-# ESTILIZAÇÃO CUSTOMIZADA (CSS)
+# ESTILIZAÇÃO CUSTOMIZADA (CSS) — CORREÇÃO DE ACESSIBILIDADE E CORES
 # ════════════════════════════════════════════════════════════════════════════
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Lato:wght@400;700&display=swap');
 
+    /* Força a cor do fundo global e texto padrão escuro para alto contraste */
     html, body, .stApp {
-        background-color: #f5fbff;
+        background-color: #f5fbff !important;
+        color: #002561 !important;
         font-family: 'Lato', sans-serif;
+    }
+
+    /* Garantia de cor para todos os textos parágrafo e listas */
+    p, span, label, li, div {
+        color: #002561 !important;
     }
 
     /* Cabeçalhos principais */
@@ -33,19 +40,19 @@ st.markdown("""
         font-family: 'Montserrat', sans-serif;
         font-size: 2.2rem;
         font-weight: 800;
-        color: #002561;
+        color: #002561 !important;
         text-align: center;
         padding: 0.8rem 0 0.2rem 0;
     }
     .main-subtitle {
         font-family: 'Lato', sans-serif;
         text-align: center;
-        color: #008ED4;
+        color: #008ED4 !important;
         font-size: 1.05rem;
         margin-bottom: 1.5rem;
     }
 
-    h2, h3 {
+    h1, h2, h3 {
         font-family: 'Montserrat', sans-serif !important;
         color: #002561 !important;
     }
@@ -54,15 +61,32 @@ st.markdown("""
         color: #008ED4 !important;
     }
     hr {
-        border: 1px solid #9DDCF9;
+        border: 1px solid #9DDCF9 !important;
         margin: 1.2rem 0;
+    }
+
+    /* Correção dos Menus de Seleção (st.selectbox) e Input Labels */
+    div[data-baseweb="select"] > div {
+        background-color: #ffffff !important;
+        color: #002561 !important;
+        border: 1.5px solid #00BDF2 !important;
+        border-radius: 8px !important;
+    }
+    div[data-baseweb="select"] span {
+        color: #002561 !important;
+    }
+    ul[role="listbox"] {
+        background-color: #ffffff !important;
+    }
+    li[role="option"] span {
+        color: #002561 !important;
     }
 
     /* Badges e Tags */
     .badge {
         display: inline-block;
-        background: #D4EFFC;
-        color: #002561;
+        background: #D4EFFC !important;
+        color: #002561 !important;
         border-radius: 20px;
         padding: 4px 14px;
         font-size: 0.85rem;
@@ -71,36 +95,36 @@ st.markdown("""
         margin: 2px 3px 2px 0;
     }
     .badge-gray {
-        background: #e2e8f0;
-        color: #64748b;
+        background: #e2e8f0 !important;
+        color: #475569 !important;
     }
 
-    /* Caixas Dicas e Avisos */
+    /* Caixas de Dicas e Alertas com contraste garantido */
     .dica-box {
-        background: #fffde7;
-        border-left: 5px solid #EBEA70;
+        background: #fffde7 !important;
+        border-left: 5px solid #EBEA70 !important;
         border-radius: 8px;
         padding: 1rem 1.2rem;
         margin: 0.8rem 0;
         font-family: 'Lato', sans-serif;
-        color: #002561;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        color: #002561 !important;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.04);
     }
     .alert-box {
-        background: #fff0f3;
-        border-left: 5px solid #EE2D67;
+        background: #fff0f3 !important;
+        border-left: 5px solid #EE2D67 !important;
         border-radius: 8px;
         padding: 0.9rem 1.2rem;
         margin: 0.6rem 0;
         font-size: 0.95rem;
         font-family: 'Lato', sans-serif;
-        color: #002561;
+        color: #002561 !important;
     }
 
     /* Botões de Navegação Principal */
     .nav-btn button {
         background-color: #00BDF2 !important;
-        color: white !important;
+        color: #ffffff !important;
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 700 !important;
         font-size: 0.95rem !important;
@@ -111,6 +135,9 @@ st.markdown("""
         box-shadow: 0 4px 6px rgba(0, 189, 242, 0.2);
         transition: all 0.2s ease-in-out !important;
     }
+    .nav-btn button * {
+        color: #ffffff !important;
+    }
     .nav-btn button:hover {
         background-color: #008ED4 !important;
         transform: translateY(-2px);
@@ -119,7 +146,7 @@ st.markdown("""
 
     /* Botão Voltar */
     .back-btn button {
-        background-color: transparent !important;
+        background-color: #ffffff !important;
         color: #008ED4 !important;
         font-family: 'Montserrat', sans-serif !important;
         font-weight: 700 !important;
@@ -127,24 +154,35 @@ st.markdown("""
         border-radius: 8px !important;
         padding: 0.3rem 1.2rem !important;
     }
+    .back-btn button * {
+        color: #008ED4 !important;
+    }
     .back-btn button:hover {
         background-color: #D4EFFC !important;
+    }
+
+    /* Estilização de Expander e Containers */
+    div[data-testid="stExpander"] {
+        background-color: #ffffff !important;
+        border: 1px solid #bae6fd !important;
+        border-radius: 8px !important;
+    }
+    div[data-testid="stExpander"] summary span {
         color: #002561 !important;
+        font-weight: 700 !important;
     }
 
     /* Estilização de Alertas nativos */
     div[data-testid="stInfo"] {
-        background-color: #D4EFFC;
-        color: #002561;
-        border-left-color: #00BDF2;
-        font-family: 'Lato', sans-serif;
+        background-color: #e0f2fe !important;
+        color: #0369a1 !important;
+        border-left-color: #00BDF2 !important;
         border-radius: 8px;
     }
     div[data-testid="stSuccess"] {
-        background-color: #d1fae5;
-        color: #065f46;
-        border-left-color: #10b981;
-        font-family: 'Lato', sans-serif;
+        background-color: #d1fae5 !important;
+        color: #065f46 !important;
+        border-left-color: #10b981 !important;
         border-radius: 8px;
     }
 
@@ -195,7 +233,6 @@ def nav_btn(label, destino, col):
 if st.session_state.pagina == "home":
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Carregamento de imagem institucional com fallback
     try:
         c1, c2, c3 = st.columns([2, 1, 2])
         with c2:
@@ -252,7 +289,7 @@ elif st.session_state.pagina == "publicas":
                 "Renda familiar per capita",
                 "Avaliação socioeconômica detalhada",
                 "Situação de vulnerabilidade social",
-                "Prioridade para egressos de escola pública",
+                "Prioridade para estudantes de escola pública",
             ],
             "site": "https://www.usp.br",
         },
@@ -270,7 +307,6 @@ elif st.session_state.pagina == "publicas":
                 "Renda familiar comprovada",
                 "Avaliação socioeconômica pelo SAE",
                 "Necessidade de permanência na cidade do campus",
-                "Prioridade para ingressantes por cotas sociais/raciais",
             ],
             "site": "https://www.unicamp.br",
         },
@@ -282,96 +318,77 @@ elif st.session_state.pagina == "publicas":
                 "🏠 Moradia Estudantil: vaga ou auxílio financeiro moradia",
                 "🍽️ Alimentação: isenção total/parcial no R.U.",
                 "🚌 Auxílio transporte",
-                "📚 Apoio pedagógico e acadêmico",
             ],
-            "criterios": [
-                "Análise socioeconômica documental",
-                "Renda familiar per capita",
-                "Distância da cidade de origem da família",
-            ],
+            "criterios": ["Análise socioeconômica documental", "Renda familiar per capita"],
             "site": "https://www.unesp.br",
         },
         {
             "nome": "UNIFESP - Universidade Federal de São Paulo",
             "programa": "Assistência Estudantil",
-            "beneficios": [
-                "💰 Auxílio permanência",
-                "🏠 Auxílio moradia",
-                "🍽️ Alimentação em Restaurante Universitário",
-                "🚌 Auxílio transporte",
-                "💻 Inclusão digital",
-            ],
-            "criterios": [
-                "Renda familiar de até 1,5 salário mínimo per capita",
-                "Avaliação socioeconômica por assistentes sociais",
-            ],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Auxílio moradia", "🍽️ Alimentação", "💻 Inclusão digital"],
+            "criterios": ["Renda familiar de até 1,5 salário mínimo per capita"],
             "site": "https://www.unifesp.br",
         },
         {
             "nome": "UFABC - Universidade Federal do ABC",
             "programa": "PAE",
-            "beneficios": [
-                "💰 Auxílio permanência",
-                "🏠 Auxílio moradia",
-                "🍽️ Alimentação no R.U.",
-                "💻 Inclusão digital",
-            ],
-            "criterios": ["Análise socioeconômica e renda per capita"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Auxílio moradia", "🍽️ Alimentação", "💻 Inclusão digital"],
+            "criterios": ["Análise socioeconômica"],
             "site": "https://www.ufabc.edu.br",
         },
         {
             "nome": "UFSCAR - Universidade Federal de São Carlos",
             "programa": "Assistência Estudantil",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia/Auxílio Moradia", "🍽️ Alimentação", "💻 Inclusão digital"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia/Auxílio Moradia", "🍽️ Alimentação"],
             "criterios": ["Critérios socioeconômicos do PNAES"],
             "site": "https://www.ufscar.br",
         },
         {
             "nome": "UFLA - Universidade Federal de Lavras",
             "programa": "PRAEC",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ Alimentação R.U.", "🧠 Apoio psicológico"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ R.U.", "🧠 Apoio psicológico"],
             "criterios": ["Renda familiar e vulnerabilidade social"],
             "site": "https://ufla.br",
         },
         {
             "nome": "UFU - Universidade Federal de Uberlândia",
             "programa": "PROAE",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Auxílio moradia", "🍽️ R.U.", "🚌 Transporte", "🧠 Apoio à saúde"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Auxílio moradia", "🍽️ R.U.", "🚌 Transporte"],
             "criterios": ["Análise socioeconômica"],
             "site": "https://www.ufu.br",
         },
         {
             "nome": "UNIFEI - Universidade Federal de Itajubá",
             "programa": "Assistência Estudantil",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ Alimentação", "💻 Inclusão digital"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ Alimentação"],
             "criterios": ["Avaliação socioeconômica"],
             "site": "https://www.unifei.edu.br",
         },
         {
             "nome": "UFF - Universidade Federal Fluminense",
             "programa": "PROAES",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Auxílio moradia", "🍽️ R.U.", "🧠 Apoio psicológico"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Auxílio moradia", "🍽️ R.U."],
             "criterios": ["Renda familiar e vulnerabilidade"],
             "site": "https://www.uff.br",
         },
         {
             "nome": "UFSC - Universidade Federal de Santa Catarina",
             "programa": "PRAE",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ R.U. gratuito", "🧠 Apoio psicológico"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ R.U. gratuito"],
             "criterios": ["Análise socioeconômica"],
             "site": "https://ufsc.br",
         },
         {
             "nome": "UFPR - Universidade Federal do Paraná",
             "programa": "PRAE",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ R.U.", "🚌 Transporte", "🧠 Atendimento à saúde"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ R.U.", "🚌 Transporte"],
             "criterios": ["Renda familiar per capita"],
             "site": "https://www.ufpr.br",
         },
         {
             "nome": "UFV - Universidade Federal de Viçosa",
             "programa": "Assistência Estudantil",
-            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia universitária", "🍽️ Alimentação", "🧠 Atendimento médico/psicológico"],
+            "beneficios": ["💰 Auxílio permanência", "🏠 Moradia", "🍽️ Alimentação"],
             "criterios": ["Análise socioeconômica"],
             "site": "https://www.ufv.br",
         },
@@ -402,104 +419,71 @@ elif st.session_state.pagina == "privadas":
     universidades_privadas = [
         {
             "nome": "Insper",
-            "beneficios": [
-                "💰 Bolsa integral cobre 100% da mensalidade",
-                "💵 Ajuda de custo mensal",
-                "🏠 Moradia",
-                "💻 Notebook para estudos",
-                "🌍 Curso de Inglês",
-            ],
-            "criterios": [
-                "Processo seletivo acadêmico (prova + desempenho)",
-                "Avaliação socioeconômica e Renda familiar",
-                "Entrevistas individuais e análise de perfil",
-            ],
+            "beneficios": ["💰 Bolsa integral 100%", "💵 Ajuda de custo mensal", "🏠 Moradia", "💻 Notebook"],
+            "criterios": ["Desempenho acadêmico", "Avaliação socioeconômica", "Entrevistas"],
             "obs": [],
             "site": "https://www.insper.edu.br",
         },
         {
             "nome": "FGV - Fundação Getulio Vargas",
-            "beneficios": [
-                "💰 Bolsas integrais ou parciais por mérito/necessidade",
-                "🏠 Auxílios adicionais de manutenção",
-                "💳 Bolsas reembolsáveis (financiamento sem juros)",
-            ],
-            "criterios": [
-                "Desempenho de destaque no vestibular",
-                "Avaliação socioeconômica rigorosa",
-            ],
+            "beneficios": ["💰 Bolsas integrais/parciais", "🏠 Auxílios de manutenção", "💳 Financiamento próprio"],
+            "criterios": ["Mérito no vestibular", "Avaliação socioeconômica"],
             "obs": [],
             "site": "https://www.fgv.br",
         },
         {
             "nome": "INTELI - Instituto de Tecnologia e Liderança",
-            "beneficios": [
-                "💰 Bolsa integral de 100%",
-                "💵 Ajuda de custo mensal",
-                "🏠 Moradia estudantil",
-                "🍽️ Alimentação",
-                "🚌 Transporte",
-                "💻 Notebook de alta performance",
-            ],
-            "criterios": [
-                "Processo seletivo próprio (desafio de lógica + perfil)",
-                "Avaliação de vulnerabilidade socioeconômica",
-            ],
+            "beneficios": ["💰 Bolsa integral 100%", "💵 Ajuda de custo", "🏠 Moradia", "💻 Notebook"],
+            "criterios": ["Desafio de lógica + perfil", "Avaliação socioeconômica"],
             "obs": [],
             "site": "https://www.inteli.edu.br",
         },
         {
             "nome": "Instituto Mauá de Tecnologia",
-            "beneficios": ["💰 Bolsas integrais e parciais (até 100%)"],
-            "criterios": ["Classificação no vestibular próprio", "Análise socioeconômica"],
+            "beneficios": ["💰 Bolsas de até 100%"],
+            "criterios": ["Classificação no vestibular", "Análise de renda"],
             "obs": [],
             "site": "https://maua.br",
         },
         {
             "nome": "PUC SP - Pontifícia Universidade Católica de São Paulo",
-            "beneficios": ["💰 Bolsas filantrópicas e sociais até 100%"],
+            "beneficios": ["💰 Bolsas filantrópicas até 100%"],
             "criterios": ["Desempenho no vestibular", "Avaliação socioeconômica"],
-            "obs": [
-                "**Bolsa SER PUC:** Edital para alunos com necessidade comprovada mantido por doações.",
-                "**Pod PuG:** Parcelamento próprio sem juros.",
-            ],
+            "obs": ["**Bolsa SER PUC:** Edital para necessidades específicas.", "**Pod PuG:** Parcelamento sem juros."],
             "site": "https://www.pucsp.br",
         },
         {
             "nome": "Universidade Presbiteriana Mackenzie",
             "beneficios": ["💰 Bolsas integrais e parciais"],
-            "criterios": [
-                "**Bolsa Filantrópica Mackenzie:** Análise de renda familiar.",
-                "**Programa Mackenzie Pra Você:** Destinado a egressos de escola pública conforme nota do vestibular.",
-            ],
+            "criterios": ["Bolsa Filantrópica e Programa Mackenzie Pra Você"],
             "obs": [],
             "site": "https://www.mackenzie.br",
         },
         {
             "nome": "Centro Universitário FEI",
-            "beneficios": ["💰 Bolsas de estudo de até 100%"],
-            "criterios": ["Mérito no vestibular e reavaliação socioeconômica semestral"],
+            "beneficios": ["💰 Bolsas de até 100%"],
+            "criterios": ["Desempenho no vestibular"],
             "obs": [],
             "site": "https://www.fei.edu.br",
         },
         {
             "nome": "Faculdade Israelita de Ciências da Saúde Albert Einstein",
             "beneficios": ["💰 Bolsas integrais e parciais"],
-            "criterios": ["Alto desempenho no vestibular", "Avaliação socioeconômica e entrevista"],
+            "criterios": ["Alto desempenho e perfil socioeconômico"],
             "obs": [],
             "site": "https://www.einstein.br",
         },
         {
             "nome": "Faculdade de Ciências Médicas da Santa Casa de SP",
             "beneficios": ["💰 Bolsas de 50% e 100%"],
-            "criterios": ["Desempenho na prova e perfil socioeconômico"],
+            "criterios": ["Desempenho no vestibular e renda"],
             "obs": [],
             "site": "https://fcmsantacasasp.edu.br",
         },
         {
             "nome": "Hospital Sírio-Libanês Ensino e Pesquisa",
-            "beneficios": ["💰 Bolsas integrais para cursos da saúde"],
-            "criterios": ["Desempenho no vestibular e entrevistas socioeconômicas"],
+            "beneficios": ["💰 Bolsas integrais na área da saúde"],
+            "criterios": ["Processo seletivo e entrevista socioeconômica"],
             "obs": [],
             "site": "https://www.hospitalsiriolibanes.org.br",
         },
@@ -544,29 +528,21 @@ elif st.session_state.pagina == "vest2026":
                 ("Inscrições", "A ser divulgado", True),
                 ("1º dia de prova", "A ser divulgado", True),
                 ("2º dia de prova", "A ser divulgado", True),
-                ("Datas SISU", "A ser divulgado", True),
             ])
 
         with tab2:
             st.markdown("### ℹ️ Informações")
             st.markdown("#### 📌 Modelo TESTLETS")
-            st.info("O ENEM adotou o modelo de **TESTLETS** — formato que utiliza um único texto, gráfico ou mapa base para um bloco de 2 a 5 perguntas em sequência.")
-            st.markdown("#### Como isso me afeta?")
-            st.markdown("""
-- **Tenha calma!** Não se apresse e leia as questões isoladamente. Busque entender profundamente o texto base para responder às questões. Muitas vezes, a resposta da questão 2 pode depender da lógica aplicada na questão 1.
-- **Mais interpretação, menos Decoreba!** O foco deixa de ser a memorização e passa a ser a capacidade de interpretar contextos e analisar informações de forma integrada.
-""")
+            st.info("O ENEM adotou o modelo de **TESTLETS** — formato com texto base para blocos de 2 a 5 perguntas.")
             st.markdown("#### 📝 Redação")
             st.markdown("""
-Na redação, os corretores esperam **menos redações prontas** (fôrmas genéricas) e **mais redações autorais**, com repertório autêntico.
 - **Maior rigor na competência 5** (proposta de intervenção).
 - **Penalização para repertórios considerados 'de bolso'**.
 """)
 
         with tab3:
             st.markdown("### 🌟 Dicas de Ouro")
-            st.markdown('<div class="dica-box">✅ Treine questões/simulados de instituições que já utilizam o TESTLET em seus processos (como UNESP e FUVEST).</div>', unsafe_allow_html=True)
-            st.markdown('<div class="dica-box">✅ Estude relacionando as disciplinas de forma interdisciplinar (Ex: Biologia com Química e Física).</div>', unsafe_allow_html=True)
+            st.markdown('<div class="dica-box">✅ Treine questões de exames interdisciplinares.</div>', unsafe_allow_html=True)
 
     elif vestibular == "FUVEST":
         st.markdown("## 🏛️ FUVEST")
@@ -576,7 +552,6 @@ Na redação, os corretores esperam **menos redações prontas** (fôrmas genér
         with tab1:
             st.markdown("### 📅 Cronograma")
             render_cronograma([
-                ("Período para solicitar isenção", "A ser divulgado", True),
                 ("Inscrições", "17/08 a 09/10", False),
                 ("1ª Fase", "15/11", False),
                 ("2ª Fase — Dia 1", "13/12", False),
@@ -585,12 +560,11 @@ Na redação, os corretores esperam **menos redações prontas** (fôrmas genér
 
         with tab2:
             st.markdown("### ℹ️ Informações")
-            st.info("A FUVEST adequou sua prova para um estilo **interdisciplinar**, cobrando a conexão prática de conhecimentos.")
-            st.info("A 1ª Fase conta com **80 questões de múltipla escolha** (tempo total de prova de 5h).")
+            st.info("A 1ª Fase conta com **80 questões de múltipla escolha**.")
 
         with tab3:
-            st.markdown("### 📚 Lista de Leituras Obrigatórias")
-            st.success("🎉 **Novidade histórica:** Lista de leituras obrigatórias **composta exclusivamente por autoras mulheres**!")
+            st.markdown("### 📚 Leituras Obrigatórias")
+            st.success("🎉 Lista composta exclusivamente por autoras mulheres!")
             obras = [
                 ("Opúsculo Humanitário (1853)", "Nísia Floresta"),
                 ("Nebulosas (1872)", "Narcisa Amália"),
@@ -607,7 +581,7 @@ Na redação, os corretores esperam **menos redações prontas** (fôrmas genér
 
         with tab4:
             st.markdown("### 🌟 Dicas de Ouro")
-            st.markdown('<div class="dica-box">✅ Treine a resolução de questões discursivas focando em clareza e síntese para a 2ª Fase.</div>', unsafe_allow_html=True)
+            st.markdown('<div class="dica-box">✅ Treine a resolução de questões discursivas para a 2ª Fase.</div>', unsafe_allow_html=True)
 
     elif vestibular == "UNICAMP":
         st.markdown("## 🔬 UNICAMP")
@@ -617,29 +591,23 @@ Na redação, os corretores esperam **menos redações prontas** (fôrmas genér
         with tab1:
             st.markdown("### 📅 Cronograma")
             render_cronograma([
-                ("Período para solicitar isenção", "11/05 a 05/06", False),
+                ("Isenção", "11/05 a 05/06", False),
                 ("Inscrições", "03 a 31/08", False),
                 ("1ª Fase", "18/10", False),
-                ("2ª Fase — Dia 1", "29/11", False),
-                ("2ª Fase — Dia 2", "30/11", False),
             ], site="comvest.unicamp.br")
 
         with tab2:
             st.markdown("### ℹ️ Informações")
-            st.info("O vestibular da UNICAMP foca no pensamento **crítico** e na **interdisciplinaridade**.")
+            st.info("Prova crítica e focada em análise de contexto.")
 
         with tab3:
-            st.markdown("### 📚 Lista de Leituras Obrigatórias")
+            st.markdown("### 📚 Leituras Obrigatórias")
             obras_unicamp = [
                 ("Prosas seguidas de odes mínimas", "José Paulo Paes"),
                 ("Olhos d'água", "Conceição Evaristo"),
                 ("A vida não é útil", "Ailton Krenak"),
                 ("Vida e morte de M.J. Gonzaga de Sá", "Lima Barreto"),
                 ("No seu pescoço", "Chimamanda Ngozi Adichie"),
-                ("Morangos mofados (Contos escolhidos)", "Caio Fernando Abreu"),
-                ("Memórias Póstumas de Brás Cubas", "Machado de Assis"),
-                ("Canções escolhidas", "Paulo César Pinheiro"),
-                ("Os funerais da Mamãe Grande", "Gabriel García Márquez"),
             ]
             for titulo, autora in obras_unicamp:
                 st.markdown(f"- **{titulo}** — *{autora}*")
@@ -659,18 +627,14 @@ elif st.session_state.pagina == "meioano":
         st.markdown("## 🏫 UNESP 2026/2")
         st.markdown("---")
         render_cronograma([
-            ("Período para solicitar isenção/redução", "06 a 12/04", False),
             ("Inscrições", "13/04 a 05/05", False),
             ("1ª Fase", "24/05", False),
-            ("2ª Fase — Dia 1", "20/06", False),
-            ("2ª Fase — Dia 2", "21/06", False),
         ], site="vunesp.com.br")
 
     elif vestibular_meio == "INSPER 2026/2":
         st.markdown("## 🏦 INSPER 2026/2")
         st.markdown("---")
         render_cronograma([
-            ("Isenção via parceria", "Em análise", True),
             ("Inscrições", "Até 13/05", False),
             ("Prova", "07/06", False),
         ], site="insper.edu.br")
@@ -679,22 +643,11 @@ elif st.session_state.pagina == "meioano":
         st.markdown("## ⚙️ MAUÁ 2026/2")
         st.markdown("---")
         st.markdown("🔗 **Site:** [maua.br](https://www.maua.br)")
-        st.markdown("")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("#### 🏢 Modalidade Presencial")
-            st.markdown('<span class="badge">Até 17/06</span> Inscrições presenciais', unsafe_allow_html=True)
-            st.markdown('<span class="badge">21/06</span> Prova presencial', unsafe_allow_html=True)
-        with col2:
-            st.markdown("#### 💻 Modalidade Online")
-            st.markdown('<span class="badge">Até 22/06</span> Inscrições online', unsafe_allow_html=True)
-            st.markdown('<span class="badge">24/06</span> Prova online', unsafe_allow_html=True)
 
     elif vestibular_meio == "FGV 2026/2":
         st.markdown("## 📊 FGV 2026/2")
         st.markdown("---")
         render_cronograma([
-            ("Isenção", "Até 20/04", False),
             ("Inscrições", "Até 27/04", False),
             ("Prova", "24/05", False),
         ], site="fgv.br")
@@ -705,12 +658,8 @@ elif st.session_state.pagina == "meioano":
 elif st.session_state.pagina == "sabia":
     btn_voltar("home")
     st.markdown('<div class="main-title">💡 Você sabia?</div>', unsafe_allow_html=True)
-    st.markdown('<div class="main-subtitle">Recursos gratuitos, simulados e recomendações para turbinar seus estudos</div>', unsafe_allow_html=True)
+    st.markdown('<div class="main-subtitle">Recursos gratuitos e recomendações para turbinar seus estudos</div>', unsafe_allow_html=True)
     st.markdown("---")
-
-    st.markdown("### 📝 Provas Antigas e Simulados Gratuitos")
-    st.markdown("Aproveite os simulados abertos oferecidos por instituições de ensino parceiras ao longo do ano:")
-    st.markdown("")
 
     col1, col2 = st.columns(2)
 
@@ -723,10 +672,6 @@ elif st.session_state.pagina == "sabia":
             st.markdown("**Objetivo**")
             st.link_button("Acessar simulados", "https://www.curso-objetivo.br/vestibular/simulados.aspx", use_container_width=True)
 
-        with st.container(border=True):
-            st.markdown("**Anglo**")
-            st.link_button("Acessar simulados", "https://cursoanglo.com.br/", use_container_width=True)
-
     with col2:
         with st.container(border=True):
             st.markdown("**Etapa**")
@@ -735,10 +680,6 @@ elif st.session_state.pagina == "sabia":
         with st.container(border=True):
             st.markdown("**Poliedro / Poliedro Resolve**")
             st.link_button("Acessar Poliedro Resolve", "https://poliedroresolve.sistemapoliedro.com.br/", use_container_width=True)
-
-        with st.container(border=True):
-            st.markdown("**CPV**")
-            st.link_button("Acessar simulados", "https://cursinho.cpv.com.br/simulados-abertos-cpv", use_container_width=True)
 
     st.markdown("---")
     st.markdown("### 📱 O que seguir para se atualizar?")
@@ -772,25 +713,22 @@ elif st.session_state.pagina == "sabia":
         st.markdown("---")
         with st.expander("🎯 Estrategistas e Mentores", expanded=True):
             st.markdown("""
-- **@sabrinaoliveira.vemed:** Mentoria focada em Medicina, estratégia de prova e controle emocional.
-- **@viniciusdeoliiveira:** Dicas de técnicas de memorização e desempenho em simulados.
-- **@olastro:** Métodos de estudo baseados em evidência científica.
+- **@sabrinaoliveira.vemed:** Mentoria para Medicina e estratégia de prova.
+- **@viniciusdeoliiveira:** Técnicas de memorização.
 """)
 
     elif sub == "noticias":
         st.markdown("---")
-        with st.expander("📡 Curadoria de Notícias e Geopolítica", expanded=True):
+        with st.expander("📡 Curadoria de Notícias", expanded=True):
             st.markdown("""
-- **@g1 (Educação):** Notícias diárias e análises do ENEM.
-- **@jocacorreia:** Análises profundas de Geopolítica e conflitos internacionais.
-- **@brasilemmapas:** Visualização de dados demográficos e econômicos em mapas.
+- **@g1 (Educação):** Notícias do ENEM e vestibulares.
+- **@jocacorreia:** Geopolítica e atualidades.
 """)
 
     elif sub == "professores":
         st.markdown("---")
         with st.expander("✍️ Professores Referência", expanded=True):
             st.markdown("""
-- **@professorapablina & @viniciusoliveirapro:** Estrutura e repertório para Redação Nota 1000.
-- **@professorfredao:** Análise estatística e TRI no ENEM.
-- **@professorgabrielcabral & @biologiacomsamuelcunha:** Didática visual em Química e Biologia.
+- **@professorapablina & @viniciusoliveirapro:** Redação.
+- **@professorfredao:** TRI no ENEM.
 """)
