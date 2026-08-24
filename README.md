@@ -56,10 +56,12 @@ cd nome-do-seu-repositorio
 3. **Crie e ative um ambiente virtual**
 # Linux / macOS
 python3 -m venv venv
+
 source venv/bin/activate
 
 # Windows
 python -m venv venv
+
 venv\Scripts\activate
 
 4. **Instale as dependências necessárias:**
