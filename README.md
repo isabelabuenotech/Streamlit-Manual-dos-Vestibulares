@@ -47,29 +47,39 @@ Certifique-se de ter o **Python 3.8+** instalado em sua máquina.
 ### Passo a Passo
 
 1. **Clone o repositório:**
-   ```bash
+```
    git clone [https://github.com/isabelabuenotech/nome-do-repositorio.git](https://github.com/isabelabuenotech/nome-do-repositorio.git)
+```
 
 2. **Acesse a pasta do projeto:**
+```
 cd nome-do-seu-repositorio
+```
 
 3. **Crie e ative um ambiente virtual**
    
 ***Linux / macOS***
-
-  > _python3 -m venv venv_  
-  > _source venv/bin/activate_
+```
+python3 -m venv venv
+source venv/bin/activate
+```
 
 ***Windows***
 
-  > _python -m venv venv_  
-  > _venv\Scripts\activate_
+ ```
+python -m venv venv_  
+venv\Scripts\activate
+```
 
 4. **Instale as dependências necessárias:**
-_pip install streamlit_
+```
+pip install streamlit
+```
 
 5. **Execute a aplicação:**
-_streamlit run streamlitapp.py_
+```
+streamlit run streamlitapp.py_
+```
 
 ## 🧪 Validação e Qualidade da Aplicação (QA)
 Para garantir a estabilidade e fluidez da aplicação, foram aplicadas boas práticas de Garantia de Qualidade (QA) durante o desenvolvimento:
@@ -86,13 +96,19 @@ Contribuições são muito bem-vindas! Para contribuir com atualizações de dat
 1. **Faça um Fork deste repositório**
 
 2. **Crie uma branch para sua funcionalidade:**
+```
 git checkout -b feature/NovaFuncionalidade.
+```
 
 4. **Suba suas alterações:**
+```
 git commit -m 'feat: Adiciona informações do Vestibular X'.
+```
 
 6. **Envie para a branch principal:**
+```
 git push origin feature/NovaFuncionalidade.
+```
 
 8. **Abra um Pull Request.**
 
