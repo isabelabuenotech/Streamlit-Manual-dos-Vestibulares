@@ -54,15 +54,16 @@ Certifique-se de ter o **Python 3.8+** instalado em sua máquina.
 cd nome-do-seu-repositorio
 
 3. **Crie e ative um ambiente virtual**
-### Linux / macOS
-_python3 -m venv venv_
+   
+***Linux / macOS***
 
-_source venv/bin/activate_
+  > _python3 -m venv venv_  
+  > _source venv/bin/activate_
 
-### Windows
-_python -m venv venv_
+***Windows***
 
-_venv\Scripts\activate_
+  > _python -m venv venv_  
+  > _venv\Scripts\activate_
 
 4. **Instale as dependências necessárias:**
 _pip install streamlit_
@@ -88,9 +89,7 @@ Contribuições são muito bem-vindas! Para contribuir com atualizações de dat
 git checkout -b feature/NovaFuncionalidade.
 
 4. **Suba suas alterações:**
-<div> 
-  git commit -m 'feat: Adiciona informações do Vestibular X'.
-</div>
+git commit -m 'feat: Adiciona informações do Vestibular X'.
 
 6. **Envie para a branch principal:**
 git push origin feature/NovaFuncionalidade.
