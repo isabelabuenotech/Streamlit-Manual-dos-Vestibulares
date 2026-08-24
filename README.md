@@ -17,7 +17,7 @@ O **Portal Vestibulares 2026** é uma plataforma *data-driven* desenvolvida para
 Criado com foco em **Acessibilidade, Usabilidade (UX) e Eficiência Operacional**, o sistema consolida dados complexos de múltiplos vestibulares e instituições de ensino em um painel simples, intuitivo e com visualização dinâmica.
 
 ### 🎯 Principais Funcionalidades
-- **🎓 Guias do Vestibular (ENEM, FUVEST, UNICAMP):** Cronogramas de isenção, inscrição, datas de prova, listas de leituras obrigatórias e análise do formato das provas (ex: modelo *TESTLET* do ENEM).
+- **🎓 Guias dos Vestibulares:** Cronogramas de isenção, inscrição, datas de prova, listas de leituras obrigatórias e análise do formato das provas (ex: modelo *TESTLET* do ENEM).
   
 - **📅 Vestibulares de Meio de Ano:** Mapeamento de datas e links oficiais das principais faculdades públicas e privadas (UNESP, INSPER, FGV, MAUÁ).
 
