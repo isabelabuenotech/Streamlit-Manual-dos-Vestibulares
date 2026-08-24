@@ -54,21 +54,21 @@ Certifique-se de ter o **Python 3.8+** instalado em sua máquina.
 cd nome-do-seu-repositorio
 
 3. **Crie e ative um ambiente virtual**
-# Linux / macOS
-python3 -m venv venv
+### Linux / macOS
+_python3 -m venv venv_
 
-source venv/bin/activate
+_source venv/bin/activate_
 
-# Windows
-python -m venv venv
+### Windows
+_python -m venv venv_
 
-venv\Scripts\activate
+_venv\Scripts\activate_
 
 4. **Instale as dependências necessárias:**
-pip install streamlit
+_pip install streamlit_
 
 5. **Execute a aplicação:**
-streamlit run streamlitapp.py
+_streamlit run streamlitapp.py_
 
 ## 🧪 Validação e Qualidade da Aplicação (QA)
 Para garantir a estabilidade e fluidez da aplicação, foram aplicadas boas práticas de Garantia de Qualidade (QA) durante o desenvolvimento:
@@ -88,7 +88,9 @@ Contribuições são muito bem-vindas! Para contribuir com atualizações de dat
 git checkout -b feature/NovaFuncionalidade.
 
 4. **Suba suas alterações:**
-git commit -m 'feat: Adiciona informações do Vestibular X'.
+<div> 
+  git commit -m 'feat: Adiciona informações do Vestibular X'.
+</div>
 
 6. **Envie para a branch principal:**
 git push origin feature/NovaFuncionalidade.
