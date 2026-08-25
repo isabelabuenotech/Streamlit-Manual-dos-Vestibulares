@@ -1,5 +1,3 @@
-# Streamlit-Manual-dos-Vestibulares
-
 # 📚 Vestibulares 2026 | Informações e Dicas
 
 > **Aplicação Web interativa desenvolvida em Python e Streamlit para centralizar calendários, modelos de prova, dicas de estudos e políticas de permanência universitária.**
