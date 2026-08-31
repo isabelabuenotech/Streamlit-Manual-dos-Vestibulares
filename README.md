@@ -36,9 +36,9 @@ O projeto utiliza **Python** puro, tanto no *back-end* quanto no *front-end*, ap
 ## 🧪 Validação e Qualidade da Aplicação (QA)
 Para garantir a estabilidade e fluidez da aplicação, foram aplicadas boas práticas de Garantia de Qualidade (QA) durante o desenvolvimento:
 
-- **Teste de Fluxo de Navegação (Session State):** Validação da alternância entre telas e botões de retorno (btn_voltar) sem perda do histórico do usuário.
+- **Teste de Fluxo de Navegação (Session State):** Validação da alternância entre telas e botões de retorno sem perda do histórico do usuário.
 
-- **Validação de Exceções:** Tratamento de erros assíncronos no carregamento de ativos gráficos (logo_ismart.png) garantindo que o app continue funcional caso a imagem esteja indisponível.
+- **Validação de Exceções:** Tratamento de erros assíncronos no carregamento de ativos gráficos garantindo que o app continue funcional caso a imagem esteja indisponível.
 
 - **Tratamento de Layout e Acessibilidade:** Testes de responsividade em layouts dinâmicos via st.columns e validação visual de contraste em componentes CSS customizados.
 
@@ -48,7 +48,5 @@ Para garantir a estabilidade e fluidez da aplicação, foram aplicadas boas prá
 > Psicóloga Escolar | Analista Educacional Sênior | Data & Tech Enabler (QA & Python)
 
 📧 **E-mail:** isabelabueno.tech@gmail.com
-
 💼 **LinkedIn:** isabela-bueno-silva
-
 🐱 **GitHub:** @isabelabuenotech
